@@ -1,4 +1,4 @@
-package touchthebox.android.domantior.com.touchthebox;
+package com.android.domgarr.com.memorygrid;
 
 import org.junit.Test;
 

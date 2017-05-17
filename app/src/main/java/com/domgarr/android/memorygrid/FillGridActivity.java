@@ -1,4 +1,4 @@
-package touchthebox.android.domantior.com.touchthebox;
+package com.domgarr.android.memorygrid;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +18,8 @@ public class FillGridActivity extends AppCompatActivity {
     private static final String EXTRA_USER_ANSWER_ARRAY =
             "com.domantior.android.touchthebox.user_answer_array";
 
-    private DrawView mDrawView;
-    private Box mBox;
+    private DrawGrid mDrawView;
+    private Grid mBox;
 
     public static Intent newIntent(Context packageContext){
         Intent i = new Intent(packageContext, FillGridActivity.class);
@@ -46,10 +46,9 @@ public class FillGridActivity extends AppCompatActivity {
             }
         });
 
-        mBox = new Box(5, 5);
+        mBox = new Grid(5, 5);
 
-
-        mDrawView = new DrawView(this, mBox);
+        mDrawView = new DrawGrid(this, mBox);
         mDrawView.setBackgroundColor(Color.WHITE);
         setContentView(mDrawView);
 
@@ -58,18 +57,44 @@ public class FillGridActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int action = MotionEventCompat.getActionMasked(event);
 
-                if (action == MotionEvent.ACTION_DOWN) {
-                    final int x = (int) event.getX();
-                    final int y = (int) event.getY();
+                int pointerCount = event.getPointerCount();
+                int pointerIndex = event.getActionIndex();
+                int pointerId = event.getPointerId(pointerIndex);
 
+                //Cleaned up using a switch statement
+                //Now handles multiple touches at once.
+                //http://www.vogella.com/tutorials/AndroidTouch/article.html
+                switch(action) {
+                    case MotionEvent.ACTION_DOWN: {
+                        final int x = (int) event.getX(pointerId);
+                        final int y = (int) event.getY(pointerId);
 
-                    Thread t = new Thread() {
-                        public void run() {
-                            whichBoxTouched(x, y);
+                        Thread t = new Thread() {
+                            public void run() {
+                                whichBoxTouched(x, y);
+                            }
+                        };
+                        t.start();
+                        break;
+                    }
+                    case MotionEvent.ACTION_POINTER_DOWN: {
+                       //TODO: Spamming more then one finger presses can cause a pointerIndex Exception.
+                        if(pointerCount < 2)
+                            break;
+
+                        final int x = (int) event.getX(pointerId);
+                        final int y = (int) event.getY(pointerId);
+
+                        Thread t = new Thread() {
+                            public void run() {
+                                whichBoxTouched(x, y);
+                            }
+                        };
+                        t.start();
+                        break;
                         }
-                    };
-                    t.start();
-                }
+                    }
+
                 mDrawView.invalidate();
                 return true;
             }
@@ -88,14 +113,14 @@ public class FillGridActivity extends AppCompatActivity {
 
 
         for (int col = 0; col < mBox.getNumberOfColumns(); col++) {
-            if ((col * mBox.getColWidth()) + mBox.getColWidth() > x) {
+            if ((col * mBox.getCellWidth()) + mBox.getCellWidth() > x) {
                 x = col;
                 break;
             }
         }
 
         for (int row = 0; row < mBox.getNumberOfRows(); row++) {
-            if ((row * mBox.getRowWidth()) + mBox.getRowWidth() > y) {
+            if ((row * mBox.getCellHeight()) + mBox.getCellHeight() > y) {
                 y = row;
                 break;
             }
@@ -103,7 +128,7 @@ public class FillGridActivity extends AppCompatActivity {
         Log.d(TAG, String.valueOf(x));
         Log.d(TAG, String.valueOf(y));
 
-        mBox.setTouchArrayIndexTrue(x,y);
+        mBox.setTouchArrayAtIndexTrue(x,y);
 
         Log.d(TAG, "END");
     }

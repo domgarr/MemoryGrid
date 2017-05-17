@@ -1,4 +1,4 @@
-package touchthebox.android.domantior.com.touchthebox;
+package com.domgarr.android.memorygrid;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,8 @@ public class GoalGridActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_ARRAY =
             "com.domnantior.android.touchthebox.answer_array";
 
-    private Box mGoalBox;
-    private DrawView mDrawView;
+    private Grid mGoalBox;
+    private DrawGrid mDrawView;
 
 
     public static Intent newIntent(Context packageContext){
@@ -45,10 +45,10 @@ public class GoalGridActivity extends AppCompatActivity {
             }
         });
 
-        mGoalBox = new Box(5,5);
+        mGoalBox = new Grid(5,5);
         mGoalBox.addBoxesAtRandom(5);
 
-        mDrawView = new DrawView(this, mGoalBox);
+        mDrawView = new DrawGrid(this, mGoalBox);
         mDrawView.setBackgroundColor(Color.WHITE);
         setContentView(mDrawView);
 

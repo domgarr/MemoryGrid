@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="touchthebox.android.domantior.com.touchthebox.GameActivity"
+    tools:context="com.android.domgarr.com.memorygrid.GameActivity"
     tools:showIn="@layout/activity_game">
 />
     <Button

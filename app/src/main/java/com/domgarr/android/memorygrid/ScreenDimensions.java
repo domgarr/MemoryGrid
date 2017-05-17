@@ -1,8 +1,6 @@
-package touchthebox.android.domantior.com.touchthebox;
+package com.domgarr.android.memorygrid;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
 /**

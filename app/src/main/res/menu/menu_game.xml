@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="touchthebox.android.domantior.com.touchthebox.GameActivity">
+      tools:context="com.android.domgarr.com.memorygrid.GameActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

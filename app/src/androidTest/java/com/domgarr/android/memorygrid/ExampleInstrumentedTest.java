@@ -1,4 +1,4 @@
-package touchthebox.android.domantior.com.touchthebox;
+package com.android.domgarr.com.memorygrid;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

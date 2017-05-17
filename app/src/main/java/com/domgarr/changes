@@ -1,0 +1,19 @@
+May 14-15 2017
+-At this point you can press play. The user gets to see a grid layout of rectangles
+with 5 of them highlighted for 3 seconds. After the time is up, a empty grid is shown
+the user then clicks the box to recreate the patterns. After entering the pattern, the user
+pressed back and is told if the pattern entered was incorrect or corret.
+
+May 16, 2017
+-Added comments to code for readability. Need to get better at doing this while producing the code.
+-Renamed classes and methods, since some names didn't make sense.
+
+May 17 2017
+-Renamed package name since it was done incorrectly by me at first.
+The convention is to use a reverse DNS, which Android Studio does for you
+already. So you can enter your company domain as is, and expect it reversed.
+-Adding some explanations and detailed information regarding my learning and thought process for the
+project.
+-Added a game loop essentially. Until you incorrectly guess the randomized pattern. The game will
+continue to run.
+-
